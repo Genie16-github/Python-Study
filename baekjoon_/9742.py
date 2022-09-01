@@ -1,34 +1,33 @@
+# [S3]순열
 import sys
 from math import factorial
 input = sys.stdin.readline
 
-def solve(string, i):
+def permu(depth, string):
     global cnt
-    if i == len(a):
+    if depth == len(a):
         cnt += 1
         if cnt == b:
             return string
     else:
         for k in a:
             if k not in string:
-                res = solve(string + k, i + 1)
-
+                res = permu(depth + 1, string + k)
                 if res:
                     return res
-
     return
 
-while True:
-    cnt = 0
-    data = input().split()
 
-    if len(data) != 2:
+while True:
+    try:
+        a, b = input().split()
+    except:
         break
 
-    a, b = data
+    cnt = 0
     b = int(b)
 
     if factorial(len(a)) < b:
         print(a, b, '=', 'No permutation')
     else:
-        print(a, b, '=', solve('', 0))
+        print(a, b, '=', permu(0, ''))
