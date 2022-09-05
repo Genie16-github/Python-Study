@@ -1,4 +1,5 @@
 # 더하기 사이클
+
 import sys
 input = sys.stdin.readline
 
