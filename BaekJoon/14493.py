@@ -8,7 +8,7 @@ for i in range(n):
     bot.append([a, b])
 time += bot[0][1]
 
-i=1
+i = 1
 while i < n:
     time += 1
     if time % (bot[i][0] + bot[i][1]) >= bot[i][1]:
