@@ -39,5 +39,6 @@ max_res, min_res = -int(1e9), int(1e9)
 res = num[0]
 
 dfs(1)
+
 print(max_res)
 print(min_res)
