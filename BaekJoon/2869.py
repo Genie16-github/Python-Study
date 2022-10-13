@@ -3,10 +3,5 @@ import sys
 input = sys.stdin.readline
 
 a, b, v = map(int, input().split())
-move, cnt = 0, 1
-move += a
-while move < v:
-    move -= b
-    cnt += 1
-    move += a
-print(cnt)
+me = (v-a) // (a-b) + 1
+print(me if (v-a) % (a-b) == 0 else me+1)
