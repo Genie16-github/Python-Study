@@ -1,24 +1,34 @@
 # [S2]스택 수열
+import sys
+input = sys.stdin.readline
+
 n = int(input())
+nums = []
+for _ in range(n):
+    nums.append(int(input()))
+
 stack = []
-answer = []
-flag = 0
-cur = 1
+num = 1
+res = True
+ans = ""
+
 for i in range(n):
-    num = int(input())
-    while cur <= num:
-        stack.append(cur)
-        answer.append("+")
-        cur += 1
-
-    if stack[-1] == num:
+    su = nums[i]
+    if su >= num:
+        while su >= num:
+            stack.append(num)
+            num += 1
+            ans += "+\n"
         stack.pop()
-        answer.append("-")
+        ans += "-\n"
     else:
-        print("NO")
-        flag = 1
-        break
+        n = stack.pop()
+        if n > su:
+            print("NO")
+            res = False
+            break
+        else:
+            ans += "-\n"
 
-if flag == 0:
-    for i in answer:
-        print(i)
+if res:
+    print(ans)
