@@ -2,12 +2,13 @@
 import sys
 input = sys.stdin.readline
 
-m, n = map(int, input().split())
-for i in range(m, n+1):
-    if i == 1:
-        continue
-    for j in range(2, int(i**0.5)+1):
-        if i % j == 0:
-            break
-    else:
-        print(i)
+M, N = map(int, input().split())
+ch = [0] * (N+1)
+
+for i in range(2, N+1):
+    if ch[i] == 0:
+        if i >= M:
+            print(i)
+        for j in range(i, N+1, i):
+            ch[j] = 1
+
