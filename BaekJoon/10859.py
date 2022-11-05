@@ -4,19 +4,16 @@ def isPrime(x):  # 소수 판별
         return True
     if x < 2 or x % 2 == 0:
         return False
-    i = 3
-    m = int(x ** 0.5) + 1
-    while i < m:
+    for i in range(3, int(x**0.5)+1):
         if x % i == 0:
             return False
-        i += 2
-    return True
+    else:
+        return True
 
 
 def reverse(x):  # 숫자 뒤집기
     tmp = str(x)
-    num = ['3', '4', '7']
-    for i in num:
+    for i in ['3', '4', '7']:
         if i in tmp:
             return False
 
