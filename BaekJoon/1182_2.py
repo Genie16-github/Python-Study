@@ -1,26 +1,24 @@
 # [S2]부분수열의 합
-import sys
-input = sys.stdin.readline
-
-n, s = map(int, input().split())
-arr = list(map(int, input().split()))
-cnt = 0
-
-
-def subset_sum(idx, sub_sum):
+def dfs(v):
     global cnt
+    if v == N:
+        total = 0
+        for i in range(N):
+            if ch[i] == 1:
+                total += nums[i]
+        if total == S and ch.count(0) != N:
+            cnt += 1
+    else:
+        ch[v] = 1
+        dfs(v+1)
+        ch[v] = 0
+        dfs(v+1)
 
-    if idx >= n:
-        return
 
-    sub_sum += arr[idx]
-
-    if sub_sum == s:
-        cnt += 1
-
-    subset_sum(idx + 1, sub_sum)
-    subset_sum(idx + 1, sub_sum - arr[idx])
-
-
-subset_sum(0, 0)
-print(cnt)
+if __name__ == "__main__":
+    N, S = map(int, input().split())
+    nums = list(map(int, input().split()))
+    ch = [0] * N
+    cnt = 0
+    dfs(0)
+    print(cnt)
