@@ -1,34 +1,36 @@
 # [S3]달팽이
-import sys
-input = sys.stdin.readline
+def draw():
+    global n
+    x = y = n//2
+    cnt = num = 2
+    d = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+    t = 0
+    board[x][y] = 1
+    x -= 1
+    y -= 1
+
+    while num < n**2:
+        for _ in range(4):
+            a, b = d[t]
+            for _ in range(cnt):
+                x += a
+                y += b
+                board[x][y] = num
+                if num == m:
+                    ans[0] = x+1
+                    ans[1] = y+1
+                num += 1
+            t = (t+1) % 4
+        cnt += 2
+        x -= 1
+        y -= 1
+
 
 n = int(input())
-t = int(input())
-data = [[0] * n for _ in range(n)]
-
-dy = [0, 1, 0, -1]  # 아래, 오른쪽, 위, 왼쪽
-dx = [1, 0, -1, 0]
-d = 0
-now_x = 0
-now_y = 0
-now_num = n*n
-find_x, find_y = 0, 0
-
-while now_num > 0:
-    data[now_x][now_y] = now_num
-    if n <= now_x + dx[d] < 0 or n <= now_y + dy[d] < 0 or data[now_x+dx[d]][now_y + dy[d]] != 0:
-        d = (d + 1) % 4
-    now_y = now_y + dy[d]
-    now_x = now_x + dx[d]
-    now_num = now_num - 1
-
-for i in range(n):
-    for j in range(n):
-        if data[i][j] == t:
-            find_x = j
-            find_y = i
-        print(data[i][j], end=' ')
-    print()
-
-print(find_y + 1, find_x + 1)
-
+m = int(input())
+board = [[0]*n for _ in range(n)]
+ans = [n//2+1, n//2+1]
+draw()
+for i in board:
+    print(*i)
+print(*ans)
